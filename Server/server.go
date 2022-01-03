@@ -56,10 +56,10 @@ func main() {
 
 
 func (s *Server) SayHello(ctx context.Context, message *chat.Message) (*chat.Message, error) { 
-	
-	log.Printf("Recieved Message body from client: %s lamport: %d" , message.Body, message.Lamport)
 
+	log.Printf("Recieved Message body from client: %s lamport: %d" , message.Body, s.SafeLamport.Lamport)
 
+//message.Lamport
 	s.SafeLamport.Tick()
 	return &chat.Message{Body: "Hello from the server! wit timestamp", Lamport:s.SafeLamport.Lamport  }, nil
 }
